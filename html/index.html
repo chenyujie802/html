@@ -134,6 +134,35 @@
               
         </main>
     </div>
+<script>
+        // 1. 抓取所有的選項 (li) 與 圖片標籤 (img)
+        const menuItems = document.querySelectorAll('.sidebar li');
+        const photo = document.querySelector('.image-display img');
 
+        // 2. 設定每一項的點擊功能
+        menuItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const name = this.innerText.trim(); // 取得文字，如 "B 棟"
+                
+                // 3. 換圖邏輯 (請確保 H 資料夾裡有這些檔案)
+                if (name === "B 棟") {
+                    photo.src = "H/H02.jpg";
+                } else if (name === "C 棟") {
+                    photo.src = "H/H03.jpg";
+                } else if (name === "操場") {
+                    photo.src = "H/H04.jpg";
+                } else if (name === "H 棟") {
+                    photo.src = "H/H01.jpg";
+                } else {
+                    // 如果點到其他的，預設回主圖或 H01
+                    photo.src = "Scu.png"; 
+                }
+
+                // 加個小特效：點到的項目變紅色
+                menuItems.forEach(i => i.style.color = ""); // 重設
+                this.style.color = "#d32f2f";
+            });
+        });
+    </script>
 </body>
 </html>
