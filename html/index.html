@@ -1,69 +1,139 @@
 <!DOCTYPE html>
-<html lang="en">
+<meta charset="UTF-8"> 
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>東吳大學導覽介紹</title>
     <style>
-        li{
-            background-color: beige;
+        body {
+            font-family: "Microsoft JhengHei", sans-serif;
+            background-color: #fcfaf2; 
+            color: #333;
         }
-        </style>
+
+        header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #d32f2f;
+            padding-bottom: 10px;
+        }
+
+        .logo {
+            margin-right: 15px;
+        }
+        .main-container {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .sidebar {  /* 左選單 */
+            width: 260px;
+            background-color: white;
+            border: 2px solid #333;
+        }
+
+        .sidebar-title {  /* 大樓介紹選單項目 */
+            background-color: #d32f2f;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .sidebar ol { /* 選單項目 */
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            max-height: 550px;
+            overflow-y: auto; /* 自動出現捲軸 */
+        }
+
+        .sidebar li {
+            padding: 12px 20px;
+            border-bottom: 1px solid #333;
+            background-color: beige;
+            cursor: pointer; /* 變可滑鼠點擊 */
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar li::before {  /* . */
+            content: "•";
+            margin-right: 10px;
+            color: #d32f2f;
+            font-weight: bold;
+        }
+
+        .sidebar li:hover {  
+            background-color: #f0f0e0;
+            padding-left: 30px; /* 文字往右縮排 */
+            color: #d32f2f;
+        }
+
+   
+        .image-display { /* 右側圖片 */
+            background-color: white;
+            border: 2px solid #333;
+            padding: 20px;   
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 550px;
+            flex-direction: column; /* 讓圖片一張接一張垂直排列 */
+            align-items: center;    /* 圖片置中 */
+            gap: 20px;              /* 每張圖片之間的間隔 */
+            max-height: 550px; /* 選單限制在 600px 高度 */
+            overflow-y: auto; /* 自動出現捲軸 */
+        }
+        .image-display img { /* 控制圖片大小 */
+            max-width: 100%;
+            border: 1px solid #ccc;
+        }
+       
+    </style>
 </head>
 <body>
-    <img src="logo.png" width="60" height="60" style="float:left;"/>
-    <h1>東吳大學</h1>
-    g<hr/>
-    <ul style = "background-color: beige; margin:0px; padding:15px;">
-    <li>A棟</li>
-    <li>B棟</li>
-    <li>C棟</li>
-    <li>D棟</li>
-    <li>E棟</li>
-    <li>F棟</li>
-    <li>G棟</li>
-    <li>H棟</li>
-    <li>I棟</li>
-    <li>K棟</li>
-    <li>L棟</li>
-    <li>M棟</li>
-    <li>N棟</li>
-    <li>P棟</li>
-    <li>Q棟</li>
-    <li>R棟</li>
-    <li>操場</li>
 
-    <img src="H/H01.jpg" width="700" height="500" >
- <img id="campus-photo" src="H/H01.jpg" width="700" height="500">
-    
-    <script>
-        // 抓取所有的 <li> 選項
-        const listItems = document.querySelectorAll('li');
-        // 抓取照片標籤
-        const photo = document.getElementById('campus-photo');
+    <header>
+        <img src="logo.png" width="60" height="60" class="logo" alt="東吳校徽">
+        <h1>東吳大學校園導覽</h1>
+    </header>
 
-        // 設定點擊功能
-        listItems.forEach(item => {
-            item.style.cursor = "pointer"; // 讓滑鼠移上去變小手圖示
+    <div class="main-container">
+        <nav class="sidebar">
+            <div class="sidebar-title">大樓介紹選單項目</div>
+            <ol>
+                <li>A 棟</li>
+                <li>B 棟</li>
+                <li>C 棟</li>
+                <li>D 棟</li>
+                <li>E 棟</li>
+                <li>F 棟</li>
+                <li>G 棟</li>
+                <li>H 棟</li>
+                <li>I 棟</li>
+                <li>K 棟</li>
+                <li>L 棟</li>
+                <li>M 棟</li>
+                <li>N 棟</li>
+                <li>P 棟</li>
+                <li>Q 棟</li>
+                <li>R 棟</li>
+                <li>操場</li>
+            </ol>
+        </nav>
 
-            item.addEventListener('click', function() {
-                const name = this.innerText; // 取得你點的文字，例如 "B棟"
-                
-                // 根據你點的文字換照片 (請確認 H 資料夾裡有這些檔案)
-                if (name.includes("B棟")) {
-                    photo.src = "H/H02.jpg";
-                } else if (name.includes("C棟")) {
-                    photo.src = "H/H03.jpg";
-                } else if (name.includes("操場")) {
-                    photo.src = "H/H04.jpg";
-                } else {
-                    // 其他選項預設回第一張
-                    photo.src = "H/H01.jpg";
-                }
+        <main class="content-area">
+            <div class="path-bar">
+                東吳大學地圖
+            </div>
+            <div class="image-display">
+                <img src="Scu.png" >
+              
+        </main>
+    </div>
 
-                console.log("當前切換至：" + name);
-            });
-        });
-    </script>   
 </body>
-</html> 
+</html>
