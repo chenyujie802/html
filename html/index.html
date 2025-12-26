@@ -34,6 +34,36 @@
     <li>操場</li>
 
     <img src="H/H01.jpg" width="700" height="500" >
-    
+ <img id="campus-photo" src="H/H01.jpg" width="700" height="500">
+    
+    <script>
+        // 抓取所有的 <li> 選項
+        const listItems = document.querySelectorAll('li');
+        // 抓取照片標籤
+        const photo = document.getElementById('campus-photo');
+
+        // 設定點擊功能
+        listItems.forEach(item => {
+            item.style.cursor = "pointer"; // 讓滑鼠移上去變小手圖示
+
+            item.addEventListener('click', function() {
+                const name = this.innerText; // 取得你點的文字，例如 "B棟"
+                
+                // 根據你點的文字換照片 (請確認 H 資料夾裡有這些檔案)
+                if (name.includes("B棟")) {
+                    photo.src = "H/H02.jpg";
+                } else if (name.includes("C棟")) {
+                    photo.src = "H/H03.jpg";
+                } else if (name.includes("操場")) {
+                    photo.src = "H/H04.jpg";
+                } else {
+                    // 其他選項預設回第一張
+                    photo.src = "H/H01.jpg";
+                }
+
+                console.log("當前切換至：" + name);
+            });
+        });
+    </script>   
 </body>
 </html> 
