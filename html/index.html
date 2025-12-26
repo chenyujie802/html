@@ -20,9 +20,7 @@
             padding-bottom: 10px;
         }
 
-        .logo {
-            margin-right: 15px;
-        }
+        .logo { margin-right: 15px; }
 
         .main-container {
             display: flex;
@@ -42,7 +40,6 @@
             padding: 15px;
             text-align: center;
             font-weight: bold;
-            font-size: 1.1rem;
         }
 
         .sidebar ol {
@@ -76,9 +73,7 @@
             color: #d32f2f;
         }
 
-        .content-area {
-            flex: 1;
-        }
+        .content-area { flex: 1; }
 
         .path-bar {
             background-color: #333;
@@ -88,7 +83,7 @@
             font-weight: bold;
         }
 
-        .image-display { /* 右側圖片展示區 */
+        .image-display { 
             background-color: white;
             border: 2px solid #333;
             padding: 20px;   
@@ -124,9 +119,7 @@
         </nav>
 
         <main class="content-area">
-            <div class="path-bar" id="current-building">
-                東吳大學地圖
-            </div>
+            <div class="path-bar" id="current-building">東吳大學地圖</div>
             <div class="image-display">
                 <img id="display-img" src="Scu.png" alt="校園景觀">
             </div>
@@ -134,21 +127,19 @@
     </div>
 
     <script>
-        // 1. 抓取 HTML 元件
         const menuItems = document.querySelectorAll('#building-menu li');
         const photo = document.getElementById('display-img');
         const titleBar = document.getElementById('current-building');
 
-        // 2. 設定點擊換圖邏輯
         menuItems.forEach(item => {
             item.addEventListener('click', function() {
-                // 自動處理空格：將 "B 棟" 轉換為 "B棟" 方便比對
+                // 1. 處理文字：去掉空格 (讓 "B 棟" 變成 "B棟")
                 const name = this.innerText.trim().replace(/\s+/g, '');
                 
-                // 更新顯示文字
+                // 2. 更新標題
                 titleBar.innerText = "東吳大學 - " + name;
 
-                // 3. 換圖路徑 (這裡必須對應你 GitHub 上的 801.jpg ~ 804.jpg)
+                // 3. 換圖邏輯 (對應你的 801.jpg ~ 804.jpg)
                 if (name === "A棟" || name === "H棟") {
                     photo.src = "H/801.jpg";
                 } else if (name === "B棟") {
@@ -158,21 +149,18 @@
                 } else if (name === "操場") {
                     photo.src = "H/804.jpg";
                 } else {
-                    // 如果點選其他樓層，顯示大地圖
                     photo.src = "Scu.png";
                 }
 
-                // 4. 點擊回饋：變換文字顏色
-                menuItems.forEach(i => i.style.color = ""); 
-                this.style.color = "#d32f2f"; 
+                // 4. 點擊回饋：變色
+                menuItems.forEach(i => {
+                    i.style.color = "";
+                    i.style.fontWeight = "";
+                });
+                this.style.color = "#d32f2f";
                 this.style.fontWeight = "bold";
             });
         });
-
-        // 圖片讀取失敗時的自動檢查 (會顯示在瀏覽器 F12 的 Console)
-        photo.onerror = function() {
-            console.error("找不到圖片檔案，請確認 H 資料夾內的檔名是否為 801.jpg 等正確格式。");
-        };
     </script>
 </body>
 </html>
