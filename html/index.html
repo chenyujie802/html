@@ -30,7 +30,7 @@
             align-items: flex-start;
         }
 
-        .sidebar {  /* 左選單 */
+        .sidebar {  /* 左選單樣式 */
             width: 260px;
             background-color: white;
             border: 2px solid #333;
@@ -96,15 +96,12 @@
             justify-content: center;
             align-items: center;
             min-height: 550px;
-            max-height: 600px;
-            overflow: hidden;
         }
 
         .image-display img {
             max-width: 100%;
-            max-height: 100%;
+            max-height: 500px;
             border: 1px solid #ccc;
-            object-fit: contain;
         }
     </style>
 </head>
@@ -137,45 +134,44 @@
     </div>
 
     <script>
-        // 1. 抓取元件
+        // 1. 抓取 HTML 元件
         const menuItems = document.querySelectorAll('#building-menu li');
         const photo = document.getElementById('display-img');
         const titleBar = document.getElementById('current-building');
 
-        // 2. 設定點擊邏輯
+        // 2. 設定點擊換圖邏輯
         menuItems.forEach(item => {
             item.addEventListener('click', function() {
-                // 取得文字並移除空格 (例如 "A 棟" 變成 "A棟")
+                // 自動處理空格：將 "B 棟" 轉換為 "B棟" 方便比對
                 const name = this.innerText.trim().replace(/\s+/g, '');
                 
-                // 更新上方藍條文字
+                // 更新顯示文字
                 titleBar.innerText = "東吳大學 - " + name;
 
-                // 3. 換圖判斷邏輯
-                // 請確認你的 H 資料夾內有這些照片檔案
-                if (name === "B棟") {
+                // 3. 換圖路徑 (這裡必須對應你 GitHub 上的 801.jpg ~ 804.jpg)
+                if (name === "A棟" || name === "H棟") {
                     photo.src = "H/801.jpg";
-                } else if (name === "C棟") {
+                } else if (name === "B棟") {
                     photo.src = "H/802.jpg";
-                } else if (name === "操場") {
+                } else if (name === "C棟") {
                     photo.src = "H/803.jpg";
-                } else if (name === "H棟" || name === "A棟") {
+                } else if (name === "操場") {
                     photo.src = "H/804.jpg";
                 } else {
-                    // 如果點到 D~R 棟目前還沒設定照片，顯示預設大地圖
+                    // 如果點選其他樓層，顯示大地圖
                     photo.src = "Scu.png";
                 }
 
-                // 4. 選單顏色回饋
-                menuItems.forEach(i => i.style.color = ""); // 先重設所有人
-                this.style.color = "#d32f2f"; // 被點到的變紅
+                // 4. 點擊回饋：變換文字顏色
+                menuItems.forEach(i => i.style.color = ""); 
+                this.style.color = "#d32f2f"; 
                 this.style.fontWeight = "bold";
             });
         });
 
-        // 檢查圖片加載失敗的處理 (Debug 用)
+        // 圖片讀取失敗時的自動檢查 (會顯示在瀏覽器 F12 的 Console)
         photo.onerror = function() {
-            console.error("圖片讀取失敗，請檢查路徑與檔名是否正確！");
+            console.error("找不到圖片檔案，請確認 H 資料夾內的檔名是否為 801.jpg 等正確格式。");
         };
     </script>
 </body>
