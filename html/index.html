@@ -36,4 +36,30 @@
     
 </body>
 </html> 
-<script
+<script>
+    // 等待網頁內容載入完成
+document.addEventListener('DOMContentLoaded', function() {
+    // 1. 取得所有的清單項目 (li)
+    const menuItems = document.querySelectorAll('ul li');
+    // 2. 取得要顯示圖片的 img 標籤
+    const displayImage = document.getElementById('building-image');
+
+    // 3. 為每一個 li 加上點擊事件監聽
+    menuItems.forEach(item => {
+        item.addEventListener('click', function() {
+            // 取得該 li 身上 data-image 的值
+            const imageName = this.getAttribute('data-image');
+            
+            // 如果有設定圖片名稱，就更換圖片路徑
+            if (imageName) {
+                displayImage.src = imageName;
+                
+                // 選做：可以加上一點視覺效果，例如改變選中項目的顏色
+                menuItems.forEach(li => li.style.fontWeight = 'normal');
+                this.style.fontWeight = 'bold';
+            }
+        });
+    });
+});
+
+</script>
