@@ -139,18 +139,32 @@
                 // 2. 更新標題
                 titleBar.innerText = "東吳大學 - " + name;
 
-                // 3. 換圖邏輯 (對應你的 801.jpg ~ 804.jpg)
-                if (name === "A棟" || name === "H棟") {
-                    photo.src = "H/801.jpg";
+                // 3. 換圖邏輯
+                if (name === "A棟" ) {
+                    photo.src = "A1.jpg";
                 } else if (name === "B棟") {
-                    photo.src = "H/802.jpg";
+                    photo.src = "B1.jpg";
                 } else if (name === "C棟") {
-                    photo.src = "H/803.jpg";
+                    photo.src = "C棟";
+                 } else if (name === "D棟") {
+                    photo.src = "D1.jpg";
                 } else if (name === "操場") {
                     photo.src = "H/804.jpg";
-                } else {
-                    photo.src = "Scu.png";
-                }
+                } else if (name === "M棟") {
+                    photo.src = "M1.jpg";
+                } else if (name === "N棟") {
+                    photo.src = "N1.jpg";
+                } else if (name === "H棟") {
+                    photo.src = "H/801.jpg";
+                } else if (name === "F棟") {
+                    photo.src = "F.jpg";
+                } else if (name === "L棟") {
+                    photo.src = "L.jpg";
+                } else if (name === "Q棟") {
+                    photo.src = "Q1.jpg";
+                } 
+
+
 
                 // 4. 點擊回饋：變色
                 menuItems.forEach(i => {
